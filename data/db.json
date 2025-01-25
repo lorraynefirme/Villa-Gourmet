@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Macarrão Vegano",
+      "category": "vegetariano",
+      "tags": ["saudável", "refeição leve"],
+      "price": 15.99,
+      "rating": 4.5,
+      "image": "macarrao-vegano.jpg",
+      "description": "Delicioso hambúrguer clássico com carne bovina, queijo, alface e tomate."
+    },
+    {
+      "id": 2,
+      "name": "Sanduiche",
+      "category": "vegetariano",
+      "tags": ["saudável", "refeição leve"],
+      "price": 12.5,
+      "rating": 4.8,
+      "image": "sanduiche.jpg",
+      "description": "Salada Caesar com alface, croutons, queijo parmesão e molho especial."
+    }
+  ]
+}
