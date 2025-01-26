@@ -21,7 +21,7 @@ export const ProductCard = ({
   const PrimaryButton = ButtonFactory({ type: "primary" });
 
   return (
-    <div className="flex flex-col justify-center items-center bg-slate-500 px-4 py-6 rounded-md">
+    <div className="flex flex-col justify-center items-center bg-slate-500 px-4 py-6 rounded-md h-full">
       <div>
         <Image
           src={`/images/products/${imagePath}`}

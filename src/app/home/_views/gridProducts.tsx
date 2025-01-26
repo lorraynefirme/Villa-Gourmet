@@ -19,8 +19,8 @@ export const GridProdutcs = () => {
   } = useGridProdutcs({ loadProductlist });
 
   return (
-    <div className="flex justify-between">
-      <aside className="w-60 px-2">
+    <div className="flex justify-between sm:flex-row flex-col">
+      <aside className="w-60 px-2 sm:mb-0 mb-5">
         <Accordion
           show={showCategory}
           setShow={setShowCategory}
@@ -119,7 +119,7 @@ export const GridProdutcs = () => {
           </ul>
         </Accordion>
       </aside>
-      <div className="grid grid-cols-4 items-center gap-6">
+      <div className="grid grid-cols-[300px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center gap-4 justify-center">
         {productListToView.map((item) => (
           <ProductCard
             key={item.id}
