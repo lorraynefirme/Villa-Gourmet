@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiService = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "https://api-produtos-one.vercel.app/",
   // headers: { Authorization: "Bearer token" },
 });
 
