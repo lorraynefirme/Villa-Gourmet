@@ -91,7 +91,7 @@ export const GridProdutcs = () => {
                   type="checkbox"
                   id="refeicao_leve"
                   name="refeicao_leve"
-                  checked={state.refeicao_leve.selected}
+                  checked={state.refeiçao_leve.selected}
                   onChange={(e) =>
                     handleCheckboxChange(e.target.name as keyof State)
                   }
