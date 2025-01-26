@@ -1,5 +1,6 @@
 "use client";
 
+import { assertionIsNotNulish } from "@/functions/asserts/index";
 import { ProductService } from "@/service/http/productService";
 import { ResponseGetProductList } from "@/service/http/productService.interface";
 
@@ -8,6 +9,8 @@ export const onGetProductList = async (): Promise<
 > => {
   try {
     const response = await ProductService.getProductList();
+
+    assertionIsNotNulish(response);
 
     if (response) {
       return {
