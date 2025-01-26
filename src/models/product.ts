@@ -32,11 +32,8 @@ export class ProductModel {
               item.description
             )
         );
-        console.log(data, "model");
         return { data };
       }
-    } catch (error) {
-      console.log("error na model");
-    }
+    } catch (error) {}
   };
 }

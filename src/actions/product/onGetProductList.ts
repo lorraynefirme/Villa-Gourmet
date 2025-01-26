@@ -15,7 +15,5 @@ export const onGetProductList = async (): Promise<
         message: response.message,
       };
     }
-  } catch (error) {
-    console.log("erro na action");
-  }
+  } catch (error) {}
 };
