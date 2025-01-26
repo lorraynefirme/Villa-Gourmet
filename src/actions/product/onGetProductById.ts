@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import { assertionIsNotNulish } from "@/functions/asserts/index";
 import { ProductService } from "@/service/http/productService";
