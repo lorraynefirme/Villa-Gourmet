@@ -1,4 +1,4 @@
-import { GridProdutcs } from "./home/_view/gridProducts";
+import { GridProdutcs } from "@/views/gridProducts";
 
 export default function Home() {
   return <GridProdutcs />;

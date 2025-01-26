@@ -8,7 +8,7 @@ export interface State {
   vegano: { selected: boolean; typeFilter: TypeFilter };
   com_carne: { selected: boolean; typeFilter: TypeFilter };
   saudavel: { selected: boolean; typeFilter: TypeFilter };
-  refeicao_leve: { selected: boolean; typeFilter: TypeFilter };
+  refeiçao_leve: { selected: boolean; typeFilter: TypeFilter };
   fast_food: { selected: boolean; typeFilter: TypeFilter };
 }
 
@@ -17,7 +17,7 @@ const initialState: State = {
   vegano: { selected: false, typeFilter: "category" },
   com_carne: { selected: false, typeFilter: "category" },
   saudavel: { selected: false, typeFilter: "tag" },
-  refeicao_leve: { selected: false, typeFilter: "tag" },
+  refeiçao_leve: { selected: false, typeFilter: "tag" },
   fast_food: { selected: false, typeFilter: "tag" },
 };
 
