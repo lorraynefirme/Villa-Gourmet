@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ButtonFactory } from "@/components/button/button";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   id: number;
@@ -19,6 +20,7 @@ export const ProductCard = ({
   description,
 }: ProductCardProps) => {
   const PrimaryButton = ButtonFactory({ type: "primary" });
+  const router = useRouter();
 
   return (
     <div className="flex flex-col justify-center items-center bg-slate-500 px-4 py-6 rounded-md h-full">
@@ -34,7 +36,7 @@ export const ProductCard = ({
           }}
         />
       </div>
-      <div>
+      <div className="mb-2">
         <p className="text-base font-semibold text-center mt-3 mb-2">{name}</p>
         <p className="text-sm text-center mb-3">{description}</p>
         <p className="text-sm">
@@ -44,7 +46,9 @@ export const ProductCard = ({
           Nota: <span className="font-semibold text-base ">{rating}</span>
         </p>
       </div>
-      <PrimaryButton>Ver detalhes</PrimaryButton>
+      <PrimaryButton onClick={() => router.push(`/detalhes/${id}`)}>
+        Ver detalhes
+      </PrimaryButton>
     </div>
   );
 };

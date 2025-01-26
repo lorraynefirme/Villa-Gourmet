@@ -35,7 +35,7 @@ export default function RootLayout({
           <nav>
             <ul className="flex gap-3">
               <li>
-                <Link className="cursor-default" href="#">
+                <Link className="cursor-pointer" href="/">
                   Pratos
                 </Link>
               </li>
@@ -52,7 +52,15 @@ export default function RootLayout({
             </ul>
           </nav>
         </div>
-        <main className="px-3 pb-24 pt-3">{children}</main>
+        <div className="flex w-full">
+          <main className="px-3 pb-14 pt-3 w-full">{children}</main>
+          <aside className="w-60 sticky right-0">
+            <div>produto X</div>
+            <div>produto X</div>
+            <div>produto X</div>
+            <div>produto X</div>
+          </aside>
+        </div>
         <footer className="fixed bottom-0 left-0 z-20 w-full p-4 h-4 bg-white border-t border-gray-200 shadow-sm md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
           <a
             href="tel:+553199456465"

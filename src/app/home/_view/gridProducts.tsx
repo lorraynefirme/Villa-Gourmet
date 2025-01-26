@@ -19,7 +19,7 @@ export const GridProdutcs = () => {
   } = useGridProdutcs({ loadProductlist });
 
   return (
-    <div className="flex justify-between sm:flex-row flex-col">
+    <div className="flex justify-between sm:flex-row flex-col p-2">
       <aside className="w-60 px-2 sm:mb-0 mb-5">
         <Accordion
           show={showCategory}
