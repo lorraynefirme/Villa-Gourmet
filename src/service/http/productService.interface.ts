@@ -13,3 +13,8 @@ export interface ResponseGetProductList {
   data: Product[];
   message: string;
 }
+
+export interface ResponseGetProductById {
+  data: Product;
+  message: string;
+}

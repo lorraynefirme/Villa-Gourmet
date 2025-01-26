@@ -1,5 +1,8 @@
 import apiService from "../apiService";
-import { ResponseGetProductList } from "./productService.interface";
+import {
+  ResponseGetProductById,
+  ResponseGetProductList,
+} from "./productService.interface";
 
 export const ProductService = {
   getProductList: async (): Promise<ResponseGetProductList | undefined> => {
@@ -9,6 +12,20 @@ export const ProductService = {
 
       return {
         data: products,
+        message: "",
+      };
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  },
+
+  getProductById: async (id: string): Promise<ResponseGetProductById | undefined> => {
+    try {
+      const response = await apiService.get(`/products/${id}`);
+      const product = await response.data;
+
+      return {
+        data: product,
         message: "",
       };
     } catch (error) {
