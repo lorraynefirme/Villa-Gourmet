@@ -3,8 +3,11 @@
 import { Accordion } from "@/components/accordion/accordion";
 import { ProductCard } from "@/components/productCard/productCard";
 import { State, useGridProdutcs } from "@/controllers/useGridProdutcs";
+import { ProductModel } from "@/models/product";
 
 export const GridProdutcs = () => {
+  const loadProductlist = async () => await ProductModel.getProductList();
+
   const {
     productListToView,
     showCategory,
@@ -13,7 +16,7 @@ export const GridProdutcs = () => {
     setShowTag,
     setShowCategory,
     handleCheckboxChange,
-  } = useGridProdutcs();
+  } = useGridProdutcs({ loadProductlist });
 
   return (
     <div className="flex justify-between">

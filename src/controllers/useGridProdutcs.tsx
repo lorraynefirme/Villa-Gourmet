@@ -42,7 +42,11 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-export const useGridProdutcs = () => {
+interface UseGridProdutcsProps {
+  loadProductlist: () => Promise<{ data: ProductModel[] } | undefined>;
+}
+
+export const useGridProdutcs = ({ loadProductlist }: UseGridProdutcsProps) => {
   const [productList, setProductList] = useState<ProductModel[]>([]);
   const [productListToView, setProductListToView] = useState<ProductModel[]>(
     []
@@ -69,7 +73,7 @@ export const useGridProdutcs = () => {
 
   const getProductList = async () => {
     try {
-      const response = await ProductModel.getProductList();
+      const response = await loadProductlist()
       if (response) {
         setProductList(response?.data);
         setProductListToView(response?.data);
