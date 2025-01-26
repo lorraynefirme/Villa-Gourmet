@@ -89,8 +89,8 @@ export const GridProdutcs = () => {
               <label className="flex justify-center items-center gap-1">
                 <input
                   type="checkbox"
-                  id="refeicao_leve"
-                  name="refeicao_leve"
+                  id="refeiçao_leve"
+                  name="refeiçao_leve"
                   checked={state.refeiçao_leve.selected}
                   onChange={(e) =>
                     handleCheckboxChange(e.target.name as keyof State)
