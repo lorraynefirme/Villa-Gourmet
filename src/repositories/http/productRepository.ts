@@ -6,7 +6,6 @@ import {
 
 export const ProductRepository = {
   getProductList: async (page: number, pageSize: number): Promise<ResponseGetProductList> => {
-    console.log(page, pageSize)
     try {
       const response = await apiService.get("/products",  {
         params: {
@@ -15,7 +14,6 @@ export const ProductRepository = {
         },
       });
       const products = await response.data;
-      console.log(response.headers)
 
       return {
         data: products,
