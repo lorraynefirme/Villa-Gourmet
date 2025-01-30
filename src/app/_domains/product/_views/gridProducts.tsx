@@ -8,9 +8,14 @@ import {
 } from "@/app/_domains/product/_viewModels/useGridProdutcs";
 import { ProductModel } from "@/app/_domains/product/_models/productModel";
 import { generateUUID } from "@/functions/generateUUID";
+import { useState } from "react";
+import { Pagination } from "@/components/pagination/pagination";
 
 export const GridProdutcs = () => {
-  const loadProductlist = async () => await ProductModel.getProductList();
+  const PAGE_SIZE = 2
+  const [page, setPage] = useState(1);
+
+  const loadProductlist = async () => await ProductModel.getProductList(page, PAGE_SIZE);
 
   const {
     productListToView,
@@ -20,9 +25,11 @@ export const GridProdutcs = () => {
     setShowTag,
     setShowCategory,
     handleCheckboxChange,
-  } = useGridProdutcs({ loadProductlist });
+    totalPages
+  } = useGridProdutcs({ loadProductlist , page, pageSize: PAGE_SIZE});
 
   return (
+    <div className="flex justify-center items-center flex-col">
     <div className="flex justify-between sm:flex-row flex-col p-2">
       <aside className="w-60 px-2 sm:mb-0 mb-5">
         <Accordion
@@ -137,5 +144,8 @@ export const GridProdutcs = () => {
         ))}
       </div>
     </div>
+      <Pagination page={page} totalPages={totalPages} setPage={setPage} />
+    </div>
+
   );
 };

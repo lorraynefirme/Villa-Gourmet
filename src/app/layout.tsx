@@ -54,7 +54,7 @@ export default function RootLayout({
           </nav>
         </div>
         <div className="flex w-full">
-          <main className="px-3 pb-14 pt-3 w-full">{children}</main>
+          <main className="px-3 pb-14 w-full">{children}</main>
           <aside className="w-80 fixed z-20 right-0">
             <CartContainer />
           </aside>

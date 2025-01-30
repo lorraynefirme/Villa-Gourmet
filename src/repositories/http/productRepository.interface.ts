@@ -11,6 +11,7 @@ interface Product {
 
 export interface ResponseGetProductList {
   data: Product[];
+  totalPages:number
   message: string;
 }
 

@@ -13,11 +13,12 @@ export class ProductModel {
     readonly description: string = ""
   ) {}
 
-  static getProductList = async (): Promise<{ data: ProductModel[] }> => {
+  static getProductList = async (page: number, pageSize: number ): Promise<{ data: ProductModel[], totalPages: number }> => {
     try {
-      const response = await onGetProductList();
+      const response = await onGetProductList(page, pageSize);
 
       if (response) {
+        const totalPages = response.totalPages
         const data = response.data.map(
           (item) =>
             new ProductModel(
@@ -31,7 +32,7 @@ export class ProductModel {
               item.description
             )
         );
-        return { data };
+        return { data, totalPages };
       } else {
         throw new Error("Erro ao buscar dados na API");
       }

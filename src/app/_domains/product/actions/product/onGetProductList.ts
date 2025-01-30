@@ -5,17 +5,18 @@ import { ProductRepository } from "@/repositories/http/productRepository";
 import { ResponseGetProductList } from "@/repositories/http/productRepository.interface";
 import { AxiosError } from "axios";
 
-export const onGetProductList = async (): Promise<
-  ResponseGetProductList | undefined
+export const onGetProductList = async (page: number, pageSize: number): Promise<
+ResponseGetProductList| undefined
 > => {
   try {
-    const response = await ProductRepository.getProductList();
+    const response = await ProductRepository.getProductList(page, pageSize);
 
     assertionIsNotNulish(response);
 
     if (response) {
       return {
         data: response.data,
+        totalPages: response.totalPages,
         message: response.message,
       };
     }

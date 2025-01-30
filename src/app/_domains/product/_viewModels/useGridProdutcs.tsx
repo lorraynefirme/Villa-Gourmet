@@ -43,10 +43,13 @@ const reducer = (state: State, action: Action): State => {
 };
 
 interface UseGridProdutcsProps {
-  loadProductlist: () => Promise<{ data: ProductModel[] }>;
+  loadProductlist: () => Promise<{data: ProductModel[]; totalPages: number;}>
+  page: number,
+  pageSize: number
 }
 
-export const useGridProdutcs = ({ loadProductlist }: UseGridProdutcsProps) => {
+export const useGridProdutcs = ({ loadProductlist, page, pageSize }: UseGridProdutcsProps) => {
+  const [totalPages, setTotalPages] = useState(1);
   const [productList, setProductList] = useState<ProductModel[]>([]);
   const [productListToView, setProductListToView] = useState<ProductModel[]>(
     []
@@ -61,7 +64,7 @@ export const useGridProdutcs = ({ loadProductlist }: UseGridProdutcsProps) => {
 
   useEffect(() => {
     getProductList();
-  }, []);
+  }, [page]);
 
   const handleCheckboxChange = (option: keyof State) => {
     dispatch({ type: "TOGGLE_OPTION", payload: option });
@@ -77,6 +80,7 @@ export const useGridProdutcs = ({ loadProductlist }: UseGridProdutcsProps) => {
       if (response) {
         setProductList(response.data);
         setProductListToView(response.data);
+        setTotalPages(Math.ceil(Number(response.totalPages) / pageSize));
       }
     } catch (error) {}
   };
@@ -120,5 +124,7 @@ export const useGridProdutcs = ({ loadProductlist }: UseGridProdutcsProps) => {
     setShowTag,
     setShowCategory,
     handleCheckboxChange,
+    totalPages,
+    setTotalPages
   };
 };
