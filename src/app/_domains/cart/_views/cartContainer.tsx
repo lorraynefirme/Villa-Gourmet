@@ -12,9 +12,6 @@ export const CartContainer = () => {
   const { cart, getTotalPrice, getTotalProducts, PrimaryButton } = useCart();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-
-  if (!cart.length) return <div>Carrinho Vazio</div>;
-
   return (
     <motion.div
     initial={{ width: 64 }}
@@ -29,11 +26,12 @@ export const CartContainer = () => {
      
     {!isCollapsed && <>
      <div className="mt-6">
-        {cart.map((item) => (
+        {Boolean(cart.length) ?
+        cart.map((item) => (
           <div key={generateUUID()}>
             <CartItem product={item} />
           </div>
-        ))}
+        )) : <div className="text-sm">carrinho vazio</div>}
       </div>
       <div className="fixed bottom-20">
         <p className="font-semibold mt-6 mb-3">
