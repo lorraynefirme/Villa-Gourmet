@@ -1,4 +1,4 @@
-import { ProductModel } from "@/app/_domains/product/_models/productModel";
+import { ProductModel } from "@/domains/product/models/productModel";
 import { useEffect, useState, useReducer } from "react";
 
 type TypeFilter = "category" | "tag";

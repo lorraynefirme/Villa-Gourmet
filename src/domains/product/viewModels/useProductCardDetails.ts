@@ -1,5 +1,5 @@
 import { ButtonFactory } from "@/components/button/button";
-import { ProductModel } from "@/app/_domains/product/_models/productModel";
+import { ProductModel } from "@/domains/product/models/productModel";
 import useCartStore from "@/store/cartStore";
 import { useEffect, useState } from "react";
 

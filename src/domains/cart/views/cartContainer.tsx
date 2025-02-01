@@ -1,7 +1,7 @@
 "use client";
 
-import { CartItem } from "@/app/_domains/cart/_views/cartItem";
-import { useCart } from "@/app/_domains/cart/_viewModels/useCart";
+import { CartItem } from "@/domains/cart/views/cartItem";
+import { useCart } from "@/domains/cart/viewModels/useCart";
 import { useState } from "react";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';

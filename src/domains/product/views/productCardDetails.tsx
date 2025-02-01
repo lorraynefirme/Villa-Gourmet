@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 
-import { useProductCardDetails } from "@/app/_domains/product/_viewModels/useProductCardDetails";
-import { ProductModel } from "@/app/_domains/product/_models/productModel";
+import { useProductCardDetails } from "@/domains/product/viewModels/useProductCardDetails";
+import { ProductModel } from "@/domains/product/models/productModel";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 

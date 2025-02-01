@@ -1,12 +1,12 @@
 "use client";
 
 import { Accordion } from "@/components/accordion/accordion";
-import { ProductCard } from "@/app/_domains/product/_views/productCard";
+import { ProductCard } from "@/domains/product/views/productCard";
 import {
   State,
   useGridProdutcs,
-} from "@/app/_domains/product/_viewModels/useGridProdutcs";
-import { ProductModel } from "@/app/_domains/product/_models/productModel";
+} from "@/domains/product/viewModels/useGridProdutcs";
+import { ProductModel } from "@/domains/product/models/productModel";
 import { generateUUID } from "@/functions/generateUUID";
 import { useState } from "react";
 import { Pagination } from "@/components/pagination/pagination";

@@ -1,5 +1,5 @@
-import { onGetProductById } from "@/app/_domains/product/actions/product/onGetProductById";
-import { onGetProductList } from "@/app/_domains/product/actions/product/onGetProductList";
+import { onGetProductById } from "@/domains/product/actions/product/onGetProductById";
+import { onGetProductList } from "@/domains/product/actions/product/onGetProductList";
 
 export class ProductModel {
   constructor(

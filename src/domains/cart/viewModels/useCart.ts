@@ -1,7 +1,7 @@
 import useCartStore from "@/store/cartStore";
 import { ButtonFactory } from "@/components/button/button";
 import { useEffect } from "react";
-import { CartModel } from "../_models/cartModel";
+import { CartModel } from "../models/cartModel";
 
 export const useCart = () => {
   const { cart, getTotalPrice, getTotalProducts, addToCart } = useCartStore();
