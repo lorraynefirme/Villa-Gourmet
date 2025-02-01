@@ -17,7 +17,7 @@ export const ProductRepository = {
 
       return {
         data: products,
-        totalPages: response.headers["x-total-count"],
+        totalCount: response.headers["x-total-count"],
         message: "Produtos retornados com sucesso",
       };
     } catch (error) {

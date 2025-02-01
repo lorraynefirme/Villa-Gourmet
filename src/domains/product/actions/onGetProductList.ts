@@ -16,7 +16,7 @@ ResponseGetProductList| undefined
     if (response) {
       return {
         data: response.data,
-        totalPages: response.totalPages,
+        totalCount: response.totalCount,
         message: response.message,
       };
     }

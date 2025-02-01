@@ -1,5 +1,5 @@
-import { onGetProductById } from "@/domains/product/actions/product/onGetProductById";
-import { onGetProductList } from "@/domains/product/actions/product/onGetProductList";
+import { onGetProductById } from "@/domains/product/actions/onGetProductById";
+import { onGetProductList } from "@/domains/product/actions/onGetProductList";
 
 export class ProductModel {
   constructor(
@@ -13,12 +13,12 @@ export class ProductModel {
     readonly description: string = ""
   ) {}
 
-  static getProductList = async (page: number, pageSize: number ): Promise<{ data: ProductModel[], totalPages: number }> => {
+  static getProductList = async (page: number, pageSize: number ): Promise<{ data: ProductModel[], totalCount: number }> => {
     try {
       const response = await onGetProductList(page, pageSize);
 
       if (response) {
-        const totalPages = response.totalPages
+        const totalCount = response.totalCount
         const data = response.data.map(
           (item) =>
             new ProductModel(
@@ -32,7 +32,7 @@ export class ProductModel {
               item.description
             )
         );
-        return { data, totalPages };
+        return { data, totalCount };
       } else {
         throw new Error("Erro ao buscar dados na API");
       }

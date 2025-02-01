@@ -43,7 +43,7 @@ const reducer = (state: State, action: Action): State => {
 };
 
 interface UseGridProdutcsProps {
-  loadProductlist: () => Promise<{data: ProductModel[]; totalPages: number;}>
+  loadProductlist: () => Promise<{data: ProductModel[]; totalCount: number;}>
   page: number,
   pageSize: number
 }
@@ -80,7 +80,7 @@ export const useGridProdutcs = ({ loadProductlist, page, pageSize }: UseGridProd
       if (response) {
         setProductList(response.data);
         setProductListToView(response.data);
-        setTotalPages(Math.ceil(Number(response.totalPages) / pageSize));
+        setTotalPages(Math.ceil(Number(response.totalCount) / pageSize));
       }
     } catch (error) {}
   };
