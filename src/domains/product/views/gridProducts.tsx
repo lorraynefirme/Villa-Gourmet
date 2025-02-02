@@ -12,7 +12,7 @@ import { useState } from "react";
 import { Pagination } from "@/components/pagination/pagination";
 
 export const GridProdutcs = () => {
-  const PAGE_SIZE = 2
+  const PAGE_SIZE = 8
   const [page, setPage] = useState(1);
 
   const loadProductlist = async () => await ProductModel.getProductList(page, PAGE_SIZE);
