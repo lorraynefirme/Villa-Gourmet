@@ -1,4 +1,5 @@
 import { ProductModel } from "@/domains/product/models/productModel";
+import { AxiosError } from "axios";
 import { useEffect, useState, useReducer } from "react";
 
 type TypeFilter = "category" | "tag";
@@ -49,6 +50,7 @@ interface UseGridProdutcsProps {
 }
 
 export const useGridProdutcs = ({ loadProductlist, page, pageSize }: UseGridProdutcsProps) => {
+  const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
   const [productList, setProductList] = useState<ProductModel[]>([]);
   const [productListToView, setProductListToView] = useState<ProductModel[]>(
@@ -82,7 +84,15 @@ export const useGridProdutcs = ({ loadProductlist, page, pageSize }: UseGridProd
         setProductListToView(response.data);
         setTotalPages(Math.ceil(Number(response.totalCount) / pageSize));
       }
-    } catch (error) {}
+    } catch (error) {
+        if (error instanceof AxiosError || error instanceof Error) {
+          throw new Error(error.message);
+        } else {
+          throw new Error("Erro desconhecido");
+        }
+      } finally{
+      setLoading(false)
+    }
   };
 
   const handleFilter = () => {
@@ -125,6 +135,7 @@ export const useGridProdutcs = ({ loadProductlist, page, pageSize }: UseGridProd
     setShowCategory,
     handleCheckboxChange,
     totalPages,
-    setTotalPages
+    setTotalPages,
+    loading
   };
 };

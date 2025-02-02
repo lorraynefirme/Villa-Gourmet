@@ -1,6 +1,7 @@
 import { ButtonFactory } from "@/components/button/button";
 import { ProductModel } from "@/domains/product/models/productModel";
 import useCartStore from "@/store/cartStore";
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 
 interface UseGridProdutcsProps {
@@ -12,8 +13,11 @@ export const useProductCardDetails = ({
 }: UseGridProdutcsProps) => {
   const PrimaryButton = ButtonFactory({ type: "primary" });
   const SecondaryRoundedButton = ButtonFactory({ type: "secondaryRounded" });
-  const [productDetails, setProductDetails] = useState<ProductModel>(new ProductModel())
+  const [productDetails, setProductDetails] = useState<ProductModel>(
+    new ProductModel()
+  );
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
   const { addToCart, cart } = useCartStore();
 
   useEffect(() => {
@@ -26,7 +30,15 @@ export const useProductCardDetails = ({
       if (response) {
         setProductDetails(response?.data);
       }
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof AxiosError || error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("Erro desconhecido");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return {
@@ -36,5 +48,6 @@ export const useProductCardDetails = ({
     setCount,
     count,
     addToCart,
+    loading
   };
 };

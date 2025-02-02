@@ -10,6 +10,7 @@ import { ProductModel } from "@/domains/product/models/productModel";
 import { generateUUID } from "@/functions/generateUUID";
 import { useState } from "react";
 import { Pagination } from "@/components/pagination/pagination";
+import LoadingSpinner from "@/components/loadingSpinner/loadingSpinner";
 
 export const GridProdutcs = () => {
   const PAGE_SIZE = 8
@@ -25,8 +26,11 @@ export const GridProdutcs = () => {
     setShowTag,
     setShowCategory,
     handleCheckboxChange,
-    totalPages
+    totalPages,
+    loading
   } = useGridProdutcs({ loadProductlist , page, pageSize: PAGE_SIZE});
+
+  if(loading) return <LoadingSpinner />
 
   return (
     <div className="flex justify-center items-center flex-col">

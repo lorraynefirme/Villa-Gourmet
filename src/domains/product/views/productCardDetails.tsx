@@ -5,6 +5,7 @@ import { useProductCardDetails } from "@/domains/product/viewModels/useProductCa
 import { ProductModel } from "@/domains/product/models/productModel";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import LoadingSpinner from "@/components/loadingSpinner/loadingSpinner";
 
 export const ProductCardDetails = () => {
   const { id } = useParams();
@@ -19,9 +20,12 @@ export const ProductCardDetails = () => {
     setCount,
     count,
     addToCart,
+    loading
   } = useProductCardDetails({
     loadProductlistDetailsById,
   });
+
+  if(loading) return <LoadingSpinner />
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center bg-slate-300 px-4 py-6 rounded-md sm:h-[70vh] h-[90vh] gap-4 lg:gap-24">
