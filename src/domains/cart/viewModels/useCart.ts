@@ -1,11 +1,36 @@
 import useCartStore from "@/store/cartStore";
 import { ButtonFactory } from "@/components/button/button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CartModel } from "../models/cartModel";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export const useCart = () => {
-  const { cart, getTotalPrice, getTotalProducts, addToCart } = useCartStore();
   const PrimaryButton = ButtonFactory({ type: "primary" });
+
+  const {
+    cart,
+    getTotalPrice,
+    getTotalProducts,
+    addToCart,
+    setIsCollapsed,
+    isCollapsed,
+  } = useCartStore();
+
+  const isSmallScreen = useMediaQuery("(max-width: 500px)");
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (!isReady) {
+      setIsReady(true);
+    }
+  }, [isSmallScreen, isReady]);
+
+  useEffect(() => {
+    if (isReady && isSmallScreen) {
+      console.log("isSmallScreen", isSmallScreen);
+      setIsCollapsed(true);
+    }
+  }, [isReady, isSmallScreen]);
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -28,5 +53,7 @@ export const useCart = () => {
     getTotalPrice,
     getTotalProducts,
     PrimaryButton,
+    isCollapsed,
+    setIsCollapsed,
   };
 };

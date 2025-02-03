@@ -10,16 +10,20 @@ export interface Product {
 
 interface CartState {
   cart: Product[];
+  isCollapsed: boolean;
+
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
   clearCart: () => void;
   getTotalProducts: () => number;
   getTotalPrice: () => number;
+  setIsCollapsed: (value: boolean) => void;
 }
 
 const useCartStore = create<CartState>((set, get) => ({
   cart: [],
+  isCollapsed: false,
 
   addToCart: (product: Product) => {
     set((state) => {
@@ -35,6 +39,8 @@ const useCartStore = create<CartState>((set, get) => ({
       }
       return { cart: [...state.cart, product] };
     });
+
+    set({ isCollapsed: false });
   },
 
   removeFromCart: (productId: number) => {
@@ -64,6 +70,10 @@ const useCartStore = create<CartState>((set, get) => ({
     );
 
     return +total.toFixed(2);
+  },
+
+  setIsCollapsed: (value: boolean) => {
+    set({ isCollapsed: value });
   },
 }));
 
