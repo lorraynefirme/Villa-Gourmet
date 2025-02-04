@@ -20,12 +20,12 @@ export const ProductCardDetails = () => {
     setCount,
     count,
     addToCart,
-    loading
+    loading,
   } = useProductCardDetails({
     loadProductlistDetailsById,
   });
 
-  if(loading) return <LoadingSpinner />
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center bg-slate-300 px-4 py-6 rounded-md sm:h-[70vh] h-[90vh] gap-4 lg:gap-24">
@@ -57,7 +57,7 @@ export const ProductCardDetails = () => {
             <span className="font-semibold text-base ">
               {productDetails.rating}
             </span>
-          </p> 
+          </p>
         </div>
         <div className="flex justify-center items-center flex-col">
           <div className="flex justify-center items-center">

@@ -22,7 +22,7 @@ export const CartContainer = () => {
       initial={{ width: 64 }}
       animate={{ width: isCollapsed ? 16 : 240 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="h-full bg-slate-400 text-slate-950 p-4 flex flex-col fixed right-0 rounded-sm"
+      className="h-full bg-slate-400 text-slate-950 p-4 flex flex-col fixed right-0 rounded-sm overflow-y-auto custom-scrollbar"
     >
       <div className="absolute left-1">
         {!isCollapsed && (
@@ -40,7 +40,7 @@ export const CartContainer = () => {
       </div>
 
       {!isCollapsed && (
-        <>
+        <div className="flex flex-col w-full items-end">
           <div className="mt-6">
             {Boolean(cart.length) ? (
               cart.map((item) => (
@@ -52,7 +52,7 @@ export const CartContainer = () => {
               <div className="text-sm">carrinho vazio</div>
             )}
           </div>
-          <div className="fixed bottom-20">
+          <div className="pb-28">
             <p className="font-semibold mt-6 mb-3">
               Total: R$ {getTotalPrice().toFixed(2)}
             </p>
@@ -62,7 +62,7 @@ export const CartContainer = () => {
               )}
             </div>
           </div>
-        </>
+        </div>
       )}
     </motion.div>
   );
