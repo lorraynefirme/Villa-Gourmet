@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { CartModel } from "../models/cartModel";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
-export const useCart = () => {
+export const useCartContainer = () => {
   const PrimaryButton = ButtonFactory({ type: "primary" });
 
   const {

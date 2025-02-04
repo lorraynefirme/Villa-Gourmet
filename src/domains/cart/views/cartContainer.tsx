@@ -1,7 +1,7 @@
 "use client";
 
 import { CartItem } from "@/domains/cart/views/cartItem";
-import { useCart } from "@/domains/cart/viewModels/useCart";
+import { useCartContainer } from "@/domains/cart/viewModels/useCartContainer";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { motion } from "framer-motion";
@@ -15,7 +15,7 @@ export const CartContainer = () => {
     PrimaryButton,
     isCollapsed,
     setIsCollapsed,
-  } = useCart();
+  } = useCartContainer();
 
   return (
     <motion.div

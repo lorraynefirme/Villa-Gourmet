@@ -1,39 +1,20 @@
 "use client";
 
-import useCartStore, { Product } from "@/store/cartStore";
+import { Product } from "@/store/cartStore";
 import Image from "next/image";
-import { ButtonFactory } from "@/components/button/button";
-import { useEffect, useState } from "react";
+import { useCartItem } from "@/domains/cart/viewModels/useCartItem";
 
 interface CartItemProps {
   product: Product;
 }
 
 export const CartItem = ({ product }: CartItemProps) => {
-  const { cart, updateQuantity, removeFromCart } = useCartStore();
-  const SecondaryRoundedButton = ButtonFactory({ type: "secondaryRounded" });
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    setCount(product.quantity);
-  }, []);
-
-  const handleAddProuct = () => {
-    updateQuantity(product.id, count + 1);
-    setCount((prev) => prev + 1);
-  };
-
-  const handleSubtractProuct = () => {
-    updateQuantity(product.id, count - 1);
-    setCount((prev) => prev - 1);
-    if (count - 1 === 0) {
-      removeFromCart(product.id);
-
-      if (cart.length === 1) {
-        localStorage.removeItem("cart");
-      }
-    }
-  };
+  const {
+    SecondaryRoundedButton,
+    handleSubtractProuct,
+    handleAddProuct,
+    count,
+  } = useCartItem({ product });
 
   return (
     <div className="flex gap-2 my-3 justify-start">
