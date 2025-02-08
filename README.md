@@ -59,7 +59,7 @@ $ npm run dev
 
 <div>
 <p>
-A arquitetura MVVM promove uma separação clara entre a interface e a lógica de negócios, permitindo a criação de aplicativos mais organizados, testáveis e fáceis de manter. Essa abordagem facilita a colaboração entre as áreas de design e desenvolvimento e se adapta a diferentes tecnologias e plataformas.
+A arquitetura MVVM promove uma separação clara entre a interface e a lógica de negócios, permitindo a criação de aplicativos mais organizados, testáveis e fáceis de manter.
 </p>
 </div>
 </br>
@@ -304,5 +304,5 @@ export class ProductModel {
   <li>Separa bem as responsabilidades (Modelo, Lógica e UI)</li>
   <li>A Model encapsula as regras de negócio (métodos da classe)</li>
   <li>Fácil de testar, pois a lógica está desacoplada da UI</li>
-  <li>Segue o padrão MVVM clássico com classe na Model (fácil adaptação e aprendizado para o time de desenvolvimento)</li>
+  <li>Fácil adaptação e aprendizado no time de desenvolvimento</li>
 </ul>
