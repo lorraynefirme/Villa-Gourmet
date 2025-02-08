@@ -1,4 +1,4 @@
-import { assertion } from "@/functions/asserts/index";
+import { assertion } from "@/utils/asserts/index";
 
 export function assertionIsNotNulish<T>(value: T) {
   return assertion(

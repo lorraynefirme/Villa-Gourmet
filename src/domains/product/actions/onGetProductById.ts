@@ -1,6 +1,6 @@
 "use server";
 
-import { assertionIsNotNulish } from "@/functions/asserts/index";
+import { assertionIsNotNulish } from "@/utils/asserts/index";
 import { ProductRepository } from "@/repositories/http/productRepository";
 import { ResponseGetProductById } from "@/repositories/http/productRepository.interface";
 import { AxiosError } from "axios";

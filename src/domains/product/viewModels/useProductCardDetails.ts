@@ -28,7 +28,7 @@ export const useProductCardDetails = ({
     try {
       const response = await loadProductlistDetailsById();
       if (response) {
-        setProductDetails(response?.data);
+        setProductDetails(response.data);
       }
     } catch (error) {
       if (error instanceof AxiosError || error instanceof Error) {
@@ -48,6 +48,6 @@ export const useProductCardDetails = ({
     setCount,
     count,
     addToCart,
-    loading
+    loading,
   };
 };

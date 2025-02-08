@@ -5,7 +5,7 @@ import { useCartContainer } from "@/domains/cart/viewModels/useCartContainer";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { motion } from "framer-motion";
-import { generateUUID } from "@/functions/generateUUID";
+import { generateUUID } from "@/utils/generateUUID";
 
 export const CartContainer = () => {
   const {

@@ -1,13 +1,14 @@
 "use server";
 
-import { assertionIsNotNulish } from "@/functions/asserts/index";
+import { assertionIsNotNulish } from "@/utils/asserts/index";
 import { ProductRepository } from "@/repositories/http/productRepository";
 import { ResponseGetProductList } from "@/repositories/http/productRepository.interface";
 import { AxiosError } from "axios";
 
-export const onGetProductList = async (page: number, pageSize: number): Promise<
-ResponseGetProductList| undefined
-> => {
+export const onGetProductList = async (
+  page: number,
+  pageSize: number
+): Promise<ResponseGetProductList | undefined> => {
   try {
     const response = await ProductRepository.getProductList(page, pageSize);
 
