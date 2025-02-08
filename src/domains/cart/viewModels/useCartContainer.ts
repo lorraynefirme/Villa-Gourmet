@@ -27,7 +27,6 @@ export const useCartContainer = () => {
 
   useEffect(() => {
     if (isReady && isSmallScreen) {
-      console.log("isSmallScreen", isSmallScreen);
       setIsCollapsed(true);
     }
   }, [isReady, isSmallScreen]);
