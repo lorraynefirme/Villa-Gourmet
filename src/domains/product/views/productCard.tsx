@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ButtonFactory } from "@/components/button/button";
 import { useRouter } from "next/navigation";
+import { routes } from "@/routes";
 
 interface ProductCardProps {
   id: number;
@@ -47,7 +48,7 @@ export const ProductCard = ({
           Nota: <span className="font-semibold text-base ">{rating}</span>
         </p>
       </div>
-      <PrimaryButton onClick={() => router.push(`/detalhes/${id}`)}>
+      <PrimaryButton onClick={() => router.push(routes.product(id))}>
         Ver detalhes
       </PrimaryButton>
     </div>

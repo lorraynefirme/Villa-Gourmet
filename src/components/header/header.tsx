@@ -1,3 +1,4 @@
+import { routes } from "@/routes"
 import Link from "next/link"
 
 export const Header = () => {
@@ -9,7 +10,7 @@ export const Header = () => {
     <nav>
       <ul className="flex gap-3">
         <li>
-          <Link className="cursor-pointer" href="/">
+          <Link className="cursor-pointer" href={routes.home}>
             Pratos
           </Link>
         </li>
