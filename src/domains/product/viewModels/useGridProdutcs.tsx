@@ -1,6 +1,7 @@
 import { ProductModel } from "@/domains/product/models/productModel";
-import { AxiosError } from "axios";
+import ApiUnknownError from "@/services/apiUnknownError ";
 import { useEffect, useState, useReducer } from "react";
+import toast from "react-hot-toast";
 
 type TypeFilter = "category" | "tag";
 
@@ -85,12 +86,12 @@ export const useGridProdutcs = ({ loadProductlist, page, pageSize }: UseGridProd
         setTotalPages(Math.ceil(Number(response.totalCount) / pageSize));
       }
     } catch (error) {
-        if (error instanceof AxiosError || error instanceof Error) {
-          throw new Error(error.message);
-        } else {
-          throw new Error("Erro desconhecido");
-        }
-      } finally{
+      if (error instanceof Error ||error instanceof ApiUnknownError) {
+        toast.error(error.message);
+      } else {
+        toast.error('Erro desconhecido');
+      }
+    }  finally{
       setLoading(false)
     }
   };

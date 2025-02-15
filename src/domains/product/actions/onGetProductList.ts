@@ -3,7 +3,6 @@
 import { assertionIsNotNulish } from "@/utils/asserts/index";
 import { ProductRepository } from "@/repositories/http/productRepository";
 import { ResponseGetProductList } from "@/repositories/http/productRepository.interface";
-import { AxiosError } from "axios";
 
 export const onGetProductList = async (
   page: number,
@@ -22,10 +21,6 @@ export const onGetProductList = async (
       };
     }
   } catch (error) {
-    if (error instanceof AxiosError || error instanceof Error) {
-      throw new Error(error.message);
-    } else {
-      throw new Error("Erro desconhecido");
-    }
+    throw error;
   }
 };

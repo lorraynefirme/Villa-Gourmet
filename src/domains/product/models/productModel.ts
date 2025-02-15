@@ -1,5 +1,6 @@
 import { onGetProductById } from "@/domains/product/actions/onGetProductById";
 import { onGetProductList } from "@/domains/product/actions/onGetProductList";
+import ApiUnknownError from "@/services/apiUnknownError ";
 
 export class ProductModel {
   constructor(
@@ -13,12 +14,15 @@ export class ProductModel {
     readonly description: string = ""
   ) {}
 
-  static getProductList = async (page: number, pageSize: number ): Promise<{ data: ProductModel[], totalCount: number }> => {
+  static getProductList = async (
+    page: number,
+    pageSize: number
+  ): Promise<{ data: ProductModel[]; totalCount: number }> => {
     try {
       const response = await onGetProductList(page, pageSize);
 
       if (response) {
-        const totalCount = response.totalCount
+        const totalCount = response.totalCount;
         const data = response.data.map(
           (item) =>
             new ProductModel(
@@ -34,10 +38,10 @@ export class ProductModel {
         );
         return { data, totalCount };
       } else {
-        throw new Error("Erro ao buscar dados na API");
+        throw new ApiUnknownError()
       }
     } catch (error) {
-      throw new Error("Erro ao buscar dados na API");
+      throw error;
     }
   };
 
@@ -62,10 +66,10 @@ export class ProductModel {
 
         return { data };
       } else {
-        throw new Error("Erro ao buscar dados na API");
+        throw new ApiUnknownError();
       }
     } catch (error) {
-      throw new Error("Erro ao buscar dados na API");
+      throw error;
     }
   };
 }
