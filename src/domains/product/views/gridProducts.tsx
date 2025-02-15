@@ -10,7 +10,7 @@ import { ProductModel } from "@/domains/product/models/productModel";
 import { generateUUID } from "@/utils/generateUUID";
 import { useState } from "react";
 import { Pagination } from "@/components/pagination/pagination";
-import LoadingSpinner from "@/components/loadingSpinner/loadingSpinner";
+import { LoadingSpinner } from "@/components/loadingSpinner/loadingSpinner";
 
 export const GridProdutcs = () => {
   const PAGE_SIZE = 8;
