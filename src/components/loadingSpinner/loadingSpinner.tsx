@@ -12,7 +12,7 @@ const spinnerVariants = {
   },
 };
 
-export default function LoadingSpinner() {
+export const LoadingSpinner = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <motion.div
@@ -22,4 +22,4 @@ export default function LoadingSpinner() {
       />
     </div>
   );
-}
+};
