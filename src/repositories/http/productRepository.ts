@@ -1,41 +1,75 @@
-import apiService from "../../services/apiService";
+import ApiUnknownError from "@/services/apiUnknownError ";
 import {
   ResponseGetProductById,
   ResponseGetProductList,
 } from "./productRepository.interface";
 
 export const ProductRepository = {
-  getProductList: async (page: number, pageSize: number): Promise<ResponseGetProductList> => {
+  getProductList: async (
+    page: number,
+    pageSize: number
+  ): Promise<ResponseGetProductList> => {
     try {
-      const response = await apiService.get("/products",  {
-        params: {
-          _page: page,
-          _limit: pageSize,
-        },
-      });
-      const products = await response.data;
+      const response = await fetch(
+        `https://api-produtos-one.vercel.app/api/products?page=${page}&limit=${pageSize}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `Erro HTTP: ${response.status}`);
+      }
+
+      const products = await response.json();
 
       return {
         data: products,
-        totalCount: response.headers["x-total-count"],
+        totalCount: parseInt(response.headers.get("x-total-count") || "0", 10),
         message: "Produtos retornados com sucesso",
       };
     } catch (error) {
-      throw new Error("Erro ao buscar dados na API");
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new ApiUnknownError();
+      }
     }
   },
 
   getProductById: async (id: string): Promise<ResponseGetProductById> => {
     try {
-      const response = await apiService.get(`/products/${id}`);
-      const product = await response.data;
+      const response = await fetch(
+        `https://api-produtos-one.vercel.app/api/products/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `Erro HTTP: ${response.status}`);
+      }
+
+      const product = await response.json();
 
       return {
         data: product,
-        message: "",
+        message: "Produto retornado com sucesso",
       };
     } catch (error) {
-      throw new Error("Erro ao buscar dados na API");
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new ApiUnknownError();
+      }
     }
   },
 };
