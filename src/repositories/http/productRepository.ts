@@ -11,7 +11,7 @@ export const ProductRepository = {
   ): Promise<ResponseGetProductList> => {
     try {
       const response = await fetch(
-        `https://api-produtos-one.vercel.app/api/products?page=${page}&limit=${pageSize}`,
+        `https://api-produtos-one.vercel.app/products?_page=${page}&_limit=${pageSize}`,
         {
           method: "GET",
           headers: {
@@ -44,7 +44,7 @@ export const ProductRepository = {
   getProductById: async (id: string): Promise<ResponseGetProductById> => {
     try {
       const response = await fetch(
-        `https://api-produtos-one.vercel.app/api/products/${id}`,
+        `https://api-produtos-one.vercel.app/products/${id}`,
         {
           method: "GET",
           headers: {
