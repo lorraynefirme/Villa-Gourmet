@@ -1,75 +1,45 @@
-import ApiUnknownError from "@/services/apiUnknownError ";
 import {
   ResponseGetProductById,
   ResponseGetProductList,
 } from "./productRepository.interface";
+import { HttpClient, HttpResponse } from "@/infra";
 
-export const ProductRepository = {
-  getProductList: async (
+export class ProductRepository {
+  constructor(private readonly httpClient: HttpClient) {}
+
+  getProductList = async (
     page: number,
     pageSize: number
-  ): Promise<ResponseGetProductList> => {
-    try {
-      const response = await fetch(
-        `https://api-produtos-one.vercel.app/products?_page=${page}&_limit=${pageSize}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  ): Promise<HttpResponse<ResponseGetProductList>> => {
+    const responseApi = await this.httpClient.request({
+      url: `products?_page=${page}&_limit=${pageSize}`,
+      method: "get",
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || `Erro HTTP: ${response.status}`);
-      }
-
-      const products = await response.json();
-
-      return {
-        data: products,
-        totalCount: parseInt(response.headers.get("x-total-count") || "0", 10),
+    return {
+      body: {
+        data: responseApi.body,
+        totalCount: parseInt(responseApi.headers["x-total-count"] || "0", 10),
         message: "Produtos retornados com sucesso",
-      };
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      } else {
-        throw new ApiUnknownError();
-      }
-    }
-  },
+      },
+      statusCode: responseApi.statusCode,
+    };
+  };
 
-  getProductById: async (id: string): Promise<ResponseGetProductById> => {
-    try {
-      const response = await fetch(
-        `https://api-produtos-one.vercel.app/products/${id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  getProductById = async (
+    id: string
+  ): Promise<HttpResponse<ResponseGetProductById>> => {
+    const responseApi = await this.httpClient.request({
+      url: `products/${id}`,
+      method: "get",
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || `Erro HTTP: ${response.status}`);
-      }
-
-      const product = await response.json();
-
-      return {
-        data: product,
+    return {
+      body: {
+        data: responseApi.body,
         message: "Produto retornado com sucesso",
-      };
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      } else {
-        throw new ApiUnknownError();
-      }
-    }
-  },
-};
+      },
+      statusCode: responseApi.status,
+    };
+  };
+}
